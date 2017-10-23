@@ -153,7 +153,7 @@ while running:
         bricks.update()
             
     #顯示磚塊數量.
-    #showFont( u"磚塊數量:"+str(brick_num),   8, 20)            
+    showFont( u"磚塊數量:"+str(brick_num),   8, 20)            
 
     # 秀板子.
     paddle.rect[0] = paddle_x
@@ -189,7 +189,7 @@ while running:
     ball.update()
 
     # 顯示中文.
-    #showFont( u"FPS:" + str(clock.get_fps()), 8, 2)    
+    showFont( u"FPS:" + str(clock.get_fps()), 8, 2)    
     # 更新畫面.
     pygame.display.update()
     clock.tick(60)
