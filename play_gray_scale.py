@@ -1,10 +1,7 @@
 # encoding: utf-8
 
-import os
-import random
-import sys
-
-import pygame
+import os, sys, random
+import pygame 
 from pygame.locals import *
 
 from drew import *
@@ -14,7 +11,9 @@ canvas_width = 800
 canvas_height = 600
 
 # 顏色.
-block = (0,0,0)
+color_red           = (255, 0, 0)
+color_gray          = (107,130,114)
+color_gray_block    = (20,31,23)
 
 # 磚塊數量串列.
 bricks_list = []
@@ -56,11 +55,8 @@ def resetGame():
 
     # 磚塊
     for bricks in bricks_list:
-        # 亂數磚塊顏色
-        r = random.randint(100,200)
-        g = random.randint(100,200)
-        b = random.randint(100,200)
-        bricks.color = [r,g,b]        
+        # 磚塊顏色
+        bricks.color = color_gray_block        
         # 開啟磚塊.
         bricks.visivle = True
     # 0:等待開球
@@ -86,12 +82,12 @@ font = pygame.font.SysFont("simsunnsimsun", 18)
 # 底板.
 paddle_x = 0
 paddle_y = (canvas_height - 48)
-paddle = Box(pygame, canvas, "paddle", [paddle_x, paddle_y, 100, 24], (255,255,255))
+paddle = Box(pygame, canvas, "paddle", [paddle_x, paddle_y, 100, 24], color_gray_block)
 
 # 球.
 ball_x = paddle_x
 ball_y = paddle_y
-ball   = Circle(pygame, canvas, "ball", [ball_x, ball_x], 8, (255,255,255))
+ball   = Circle(pygame, canvas, "ball", [ball_x, ball_x], 8, color_gray_block)
 
 # 建立磚塊
 brick_num = 0
@@ -103,7 +99,7 @@ for i in range( 0, 99):
     if((i % 11)==0):
         brick_w = 0
         brick_h = brick_h + 18        
-    bricks_list.append (Box(pygame, canvas, "brick_"+str(i), [  brick_w + brick_x, brick_h+ brick_y, 58, 16], [255,255,255]))
+    bricks_list.append (Box(pygame, canvas, "brick_"+str(i), [  brick_w + brick_x, brick_h+ brick_y, 58, 16], color_gray_block))
     brick_w = brick_w + 60
 # 初始遊戲.
 resetGame()
@@ -135,7 +131,7 @@ while running:
 
     #---------------------------------------------------------------------    
     # 清除畫面.
-    canvas.fill(block)
+    canvas.fill(color_gray)
     
     # 磚塊
     for bricks in bricks_list:
@@ -194,7 +190,7 @@ while running:
 
     # 顯示中文.
     showFont( u"FPS:" + str(int(clock.get_fps())), 8, 2, (255, 0, 0))
-
+    
     # 更新畫面.
     pygame.display.update()
     clock.tick(60)
